@@ -1,7 +1,11 @@
 #!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+
 tp="$1"
-fd=/home/cjp/fate
-projDir=/home/cjp/fateProj
+fd=${rootPath}/fate
+projDir=${rootPath}/fateProj/projStk
 if [ "$tp" = "dev" ]; then
     sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/1env/fate:${projDir}/projStk/0source/fate,upperdir=${projDir}/projStk/2dev/fate,workdir=${projDir}/tmp $fd
 elif [ "$tp" = "env" ]; then

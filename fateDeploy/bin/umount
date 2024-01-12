@@ -1,5 +1,9 @@
 #!/bin/bash
-fd=/home/cjp/fate
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+
+fd=${rootPath}/fate
 source ${fd}/bin/clean_env.sh
 ${fd}/bin/init.sh stop
 sudo umount ${fd}
