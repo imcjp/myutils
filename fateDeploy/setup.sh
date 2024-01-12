@@ -33,11 +33,11 @@ echo "下载并解压了fateBin.zip到 ${current_dir} 并删除了zip文件"
 
 # 新增步骤: 提示用户将初始化脚本添加到.bashrc中
 echo "请将下面的命令添加到你的 .bashrc 文件中，以便在控制台启动时能够使用 ftc 命令："
-echo "echo 'source ${current_dir}/bin/init_env.sh' >> ~/.bashrc"
+echo "echo 'source ${current_dir}/fateBin/init_env.sh' >> ~/.bashrc"
 echo "然后运行 'source ~/.bashrc' 来立即应用更改。"
 
 # 新增步骤: 提示用户设置开机自启动
 echo "如果你想要设置该项目的开机自启动，请将下面的命令开机自启动文件中："
-echo "bash ${current_dir}/bin/startup.sh"
+echo "bash ${current_dir}/fateBin/startup.sh"
 
 echo "所有设置完成。"
