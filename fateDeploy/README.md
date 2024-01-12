@@ -1,4 +1,4 @@
 # myutils
 FATE框架的部署命令：
 
-curl -s https://raw.githubusercontent.com/imcjp/myproj/main/bin/setup.sh | bash
+curl -s https://github.com/imcjp/myutils/blob/main/fateDeploy/setup.sh | bash
