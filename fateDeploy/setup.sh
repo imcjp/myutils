@@ -25,13 +25,13 @@ ln -s "${current_dir}/fate/examples/" "examples"
 ln -s "${current_dir}/fate/mine" "mine"
 echo "在 fateHub/fateExp 文件夹下创建了软链接 datasets, examples, mine"
 
+# 返回原始目录
+cd "${current_dir}"
+
 # 新增步骤: 使用wget下载bin.zip并解压
 wget https://raw.githubusercontent.com/imcjp/myutils/main/fateDeploy/bin.zip
 unzip bin.zip
 echo "下载并解压了bin.zip"
-
-# 返回原始目录
-cd "${current_dir}"
 
 # 新增步骤: 提示用户将初始化脚本添加到.bashrc中
 echo "请将下面的命令添加到你的 .bashrc 文件中，以便在控制台启动时能够使用 ftc 命令："
