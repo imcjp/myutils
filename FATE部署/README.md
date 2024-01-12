@@ -1,2 +1,4 @@
 # myutils
- 个人工具集
+FATE框架的部署命令：
+
+curl -s https://raw.githubusercontent.com/imcjp/myproj/main/bin/setup.sh | bash
