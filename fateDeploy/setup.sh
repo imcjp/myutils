@@ -36,4 +36,9 @@ echo "请将下面的命令添加到你的 .bashrc 文件中，以便在控制�
 echo "echo 'source ${current_dir}/bin/init_env.sh' >> ~/.bashrc"
 echo "然后运行 'source ~/.bashrc' 来立即应用更改。"
 
+# 新增步骤: 提示用户设置开机自启动
+echo "如果你想要设置该项目的开机自启动，请将下面的命令开机自启动文件中："
+echo "bash ${current_dir}/bin/startup.sh"
+echo "这将在每次打开新终端时检查并启动项目。"
+
 echo "所有设置完成。"
