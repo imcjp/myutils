@@ -1,0 +1,8 @@
+#!/bin/bash
+fd=/home/cjp/fate
+source ${fd}/bin/clean_env.sh
+${fd}/bin/init.sh stop
+sudo umount ${fd}
+
+echo "umount result:"
+mount | grep "overlay on $fd type"
