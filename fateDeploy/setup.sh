@@ -32,4 +32,10 @@ echo "下载并解压了bin.zip"
 
 # 返回原始目录
 cd "${current_dir}"
+
+# 新增步骤: 提示用户将初始化脚本添加到.bashrc中
+echo "请将下面的命令添加到你的 .bashrc 文件中，以便在控制台启动时能够使用 ftc 命令："
+echo "echo 'source ${current_dir}/bin/init_env.sh' >> ~/.bashrc"
+echo "然后运行 'source ~/.bashrc' 来立即应用更改。"
+
 echo "所有设置完成。"
