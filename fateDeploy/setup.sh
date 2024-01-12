@@ -28,7 +28,7 @@ echo "在 fateHub/fateExp 文件夹下创建了软链接 datasets, examples, min
 # 新增步骤: 使用wget下载fateBin.zip并解压，确保在原始目录下进行
 cd "${current_dir}" # 确保在原始目录下
 wget https://raw.githubusercontent.com/imcjp/myutils/main/fateDeploy/fateBin.zip
-unzip fateBin.zip -d "${current_dir}" && rm fateBin.zip # 解压并删除zip文件
+unzip -o fateBin.zip -d "${current_dir}" && rm fateBin.zip # 解压并删除zip文件
 echo "下载并解压了fateBin.zip到 ${current_dir} 并删除了zip文件"
 
 # 新增步骤: 提示用户将初始化脚本添加到.bashrc中
