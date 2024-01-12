@@ -5,11 +5,11 @@ rootPath="$(dirname "$scpPath")"
 
 tp="$1"
 fd=${rootPath}/fate
-projDir=${rootPath}/fateProj/projStk
+projDir=${rootPath}/fateProj
 if [ "$tp" = "dev" ]; then
-    sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/1env/fate:${projDir}/projStk/0source/fate,upperdir=${projDir}/projStk/2dev/fate,workdir=${projDir}/tmp $fd
+    sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/1env:${projDir}/projStk/0source,upperdir=${projDir}/projStk/2dev,workdir=${projDir}/tmp $fd
 elif [ "$tp" = "env" ]; then
-    sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/0source/fate,upperdir=${projDir}/projStk/1env/fate,workdir=${projDir}/tmp $fd
+    sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/0source,upperdir=${projDir}/projStk/1env,workdir=${projDir}/tmp $fd
 else
     echo "请输入合法的mount类型如下：env, dev"
 fi

@@ -12,7 +12,7 @@ ftc() {
     local script_path="${bin_path}/${script_name}"
 
     # 检查脚本是否存在并且可执行
-    if [[ -x "${script_path}" ]]; then
+    if [[ -f "${script_path}" ]]; then
         # 使用 bash 明确调用脚本并传递参数
         bash "${script_path}" "$@"
     else
