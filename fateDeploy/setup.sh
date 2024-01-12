@@ -25,11 +25,11 @@ ln -s "${current_dir}/fate/examples/" "examples"
 ln -s "${current_dir}/fate/mine" "mine"
 echo "在 fateHub/fateExp 文件夹下创建了软链接 datasets, examples, mine"
 
-# 新增步骤: 使用wget下载bin.zip并解压，确保在原始目录下进行
+# 新增步骤: 使用wget下载fateBin.zip并解压，确保在原始目录下进行
 cd "${current_dir}" # 确保在原始目录下
-wget https://raw.githubusercontent.com/imcjp/myutils/main/fateDeploy/bin.zip
-unzip bin.zip -d "${current_dir}" && rm bin.zip # 解压并删除zip文件
-echo "下载并解压了bin.zip到 ${current_dir} 并删除了zip文件"
+wget https://raw.githubusercontent.com/imcjp/myutils/main/fateDeploy/fateBin.zip
+unzip fateBin.zip -d "${current_dir}" && rm fateBin.zip # 解压并删除zip文件
+echo "下载并解压了fateBin.zip到 ${current_dir} 并删除了zip文件"
 
 # 新增步骤: 提示用户将初始化脚本添加到.bashrc中
 echo "请将下面的命令添加到你的 .bashrc 文件中，以便在控制台启动时能够使用 ftc 命令："
@@ -39,6 +39,5 @@ echo "然后运行 'source ~/.bashrc' 来立即应用更改。"
 # 新增步骤: 提示用户设置开机自启动
 echo "如果你想要设置该项目的开机自启动，请将下面的命令开机自启动文件中："
 echo "bash ${current_dir}/bin/startup.sh"
-echo "这将在每次打开新终端时检查并启动项目。"
 
 echo "所有设置完成。"
