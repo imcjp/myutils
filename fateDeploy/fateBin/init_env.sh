@@ -23,3 +23,8 @@ ftc() {
 }
 
 # 当脚本被 source 时，以上函数将被定义在当前shell环境中
+
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+source ${rootPath}/fate/bin/init_env.sh

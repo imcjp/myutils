@@ -4,9 +4,12 @@ scpPath="$(dirname "$myPath")"
 rootPath="$(dirname "$scpPath")"
 
 fd=${rootPath}/fate
-source ${fd}/bin/clean_env.sh
-${fd}/bin/init.sh stop
-sudo umount ${fd}
-
-echo "umount result:"
-mount | grep "overlay on $fd type"
+bash ${scpPath}/ismount
+if [ $? -eq 0 ]; then
+    sudo umount ${fd}
+    echo "mount status of '$fd':"
+    mount | grep "overlay on $fd type"
+    bash ${scpPath}/ismount && echo 'FATE 框架卸载失败……' || echo 'FATE 框架卸载成功。'
+else
+    echo "FATE 框架未加载，不能卸载……"
+fi

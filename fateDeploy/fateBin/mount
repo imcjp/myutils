@@ -5,13 +5,19 @@ rootPath="$(dirname "$scpPath")"
 
 tp="$1"
 fd=${rootPath}/fate
-projDir=${rootPath}/fateProj
-if [ "$tp" = "dev" ]; then
-    sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/1env:${projDir}/projStk/0source,upperdir=${projDir}/projStk/2dev,workdir=${projDir}/tmp $fd
-elif [ "$tp" = "env" ]; then
-    sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/0source,upperdir=${projDir}/projStk/1env,workdir=${projDir}/tmp $fd
+bash ${scpPath}/ismount
+if [ $? -eq 1 ]; then
+    projDir=${rootPath}/fateProj
+    if [ "$tp" = "dev" ]; then
+        sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/1env:${projDir}/projStk/0source,upperdir=${projDir}/projStk/2dev,workdir=${projDir}/tmp $fd
+    elif [ "$tp" = "env" ]; then
+        sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/0source,upperdir=${projDir}/projStk/1env,workdir=${projDir}/tmp $fd
+    else
+        echo "请输入合法的mount类型如下：env, dev"
+    fi
+    echo "mount status of '$fd':"
+    mount | grep "overlay on $fd type"
+    bash ${scpPath}/ismount && echo 'FATE 框架加载成功。' || echo 'FATE 框架加载失败……'
 else
-    echo "请输入合法的mount类型如下：env, dev"
+    echo "FATE 框架已加载，不能再次加载……"
 fi
-echo "mount result:"
-mount | grep "overlay on $fd type"

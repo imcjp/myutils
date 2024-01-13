@@ -1,0 +1,37 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+
+fd=${rootPath}/fate
+
+# 标志变量，用来判断是否输出信息
+output_info=false
+
+# 使用 getopts 解析 '-o' 选项
+while getopts "o" opt; do
+  case $opt in
+    o)
+      output_info=true
+      ;;
+    \?)
+      echo "无效选项: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# 检查文件夹是否为空
+if [ -z "$(ls -A $fd)" ]; then
+   # 如果用户输入了 '-o' 参数，才执行 echo 语句
+   if $output_info; then
+       echo "文件夹是空的"
+   fi
+   exit 1
+else
+   # 如果用户输入了 '-o' 参数，才执行 echo 语句
+   if $output_info; then
+       echo "文件夹不是空的"
+   fi
+   exit 0
+fi

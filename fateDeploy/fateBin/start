@@ -1,0 +1,7 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+
+fd=${rootPath}/fate
+bash ${scpPath}/ismount && bash ${fd}/bin/init.sh start || echo 'FATE 框架未加载，无法启动……'
