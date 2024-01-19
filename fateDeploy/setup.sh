@@ -6,6 +6,8 @@ echo "当前文件夹路径: $current_dir"
 
 # 步骤2: 使用curl命令下载并执行setup.sh脚本来建立工程
 curl -s https://raw.githubusercontent.com/imcjp/myproj/main/bin/setup.sh | bash -s -- fateProj
+mkdir -p "${current_dir}/fateProj/2logs"
+echo "fateProj下创建了日志层，用户可以使用 'ftc cleanLogs' 将 2dev 层运行过程中产生的日志移到 2logs 层中，以便节省其空间"
 
 # 步骤3: 在当前文件夹下创建空文件夹fate、fateHub、fateOutput
 mkdir -p "${current_dir}/fate" "${current_dir}/fateHub" "${current_dir}/fateOutput"
@@ -33,11 +35,11 @@ echo "下载并解压了fateBin.zip到 ${current_dir} 并删除了zip文件"
 
 # 新增步骤: 提示用户将初始化脚本添加到.bashrc中
 echo "请将下面的命令添加到你的 .bashrc 文件中，以便在控制台启动时能够使用 ftc 命令："
-echo "echo 'source ${current_dir}/fateBin/init_env.sh' >> ~/.bashrc"
+echo "echo 'source ${current_dir}/fateBin/import' >> ~/.bashrc"
 echo "然后运行 'source ~/.bashrc' 来立即应用更改。"
-
-# 新增步骤: 提示用户设置开机自启动
-echo "如果你想要设置该项目的开机自启动，请将下面的命令开机自启动文件中："
-echo "bash ${current_dir}/fateBin/startup.sh"
+echo "将如下代码放到你的启动脚本中可以实现开机启动FATE框架。"
+echo "source ${current_dir}/fateBin/import"
+echo "ftc mount dev"
+echo "ftc start"
 
 echo "所有设置完成。"
