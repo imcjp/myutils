@@ -1,0 +1,9 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+# 定义目标备份目录
+backupDir="${rootPath}/fateProj/bakup"
+rm -rf "${backupDir}"
+echo "清理${backupDir}下所有备份文件……"
+

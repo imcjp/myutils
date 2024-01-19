@@ -7,12 +7,13 @@ bash ${scpPath}/ismount
 if [ $? -eq 1 ]; then
     cd ${rootPath}/fateProj/projStk
     if [ -d "2dev/data" ]; then
+        mv 2dev/fate_sqlite.db 2logs/
         rsync -avh --remove-source-files 2dev/fateflow/jobs 2logs/fateflow/ && rm -rf 2dev/fateflow/jobs
         rsync -avh --remove-source-files 2dev/fateboard/logs 2logs/fateboard/ && rm -rf 2dev/fateboard/logs
         rsync -avh --remove-source-files 2dev/fateflow/logs 2logs/fateflow/ && rm -rf 2dev/fateflow/logs
         rsync -avh --remove-source-files 2dev/fateflow/model_local_cache 2logs/fateflow/ && rm -rf 2dev/fateflow/model_local_cache
         rsync -avh --remove-source-files 2dev/fateflow/provider_registrar 2logs/fateflow/ && rm -rf 2dev/fateflow/provider_registrar
-        rsync -avh --remove-source-files 2dev/data 2logs/ && rm -rf 2dev/data    
+        rsync -avh --remove-source-files 2dev/data 2logs/ && rm -rf 2dev/data
     fi
     if [ $? -eq 0 ]; then
         echo '已经将FATE 框架的 2dev 层的日志信息清理到 2logs 层。'

@@ -6,7 +6,7 @@ rootPath="$(dirname "$scpPath")"
 bash ${scpPath}/cleanLogs
 if [ $? -eq 0 ]; then
     # 定义源目录
-    sourceDir="${rootPath}/fateProj/projStk/2dev"
+    sourceDir="${rootPath}/fateProj/projStk"
 
     # 定义目标备份目录
     backupDir="${rootPath}/fateProj/bakup"
@@ -22,7 +22,8 @@ if [ $? -eq 0 ]; then
     backupFilePath="${backupDir}/${backupFileName}"
 
     # 进行压缩操作
-    tar -czf "${backupFilePath}" -C "${sourceDir}" .
+    echo "现在开始备份 '2dev' ……"
+    tar -czf "${backupFilePath}" -C "${sourceDir}" "2dev"
 
     # 输出结果
     echo "备份 '2dev' 完成，备份路径为: ${backupFilePath}"
