@@ -1,0 +1,35 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+
+bash ${scpPath}/cleanLogs
+if [ $? -eq 0 ]; then
+    # 定义源目录
+    sourceDir="${rootPath}/fateProj/projStk/2dev"
+
+    # 定义目标备份目录
+    backupDir="${rootPath}/fateProj/bakup"
+
+    # 创建备份目录，如果它不存在的话
+    mkdir -p "${backupDir}"
+
+    # 获取当前时间戳，格式为YYYYmmddHHMMSS
+    currentTime=$(date +"%Y%m%d%H%M%S")
+
+    # 定义压缩文件的完整路径
+    backupFileName="2dev_${currentTime}.tar.gz"
+    backupFilePath="${backupDir}/${backupFileName}"
+
+    # 进行压缩操作
+    tar -czf "${backupFilePath}" -C "${sourceDir}" .
+
+    # 输出结果
+    echo "备份 '2dev' 完成，备份路径为: ${backupFilePath}"
+else
+    echo "备份 '2dev' 失败……"
+fi
+
+
+
+
