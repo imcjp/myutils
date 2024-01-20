@@ -1,0 +1,4 @@
+#!/bin/bash
+# 该脚本用于停止 'startScript' 脚本的执行的内容
+# 请在此添加你打算停止的内容，也可以通过命令 '/etc/init.d/main stop' 停止
+

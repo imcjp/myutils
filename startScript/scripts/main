@@ -1,0 +1,25 @@
+#!/bin/sh
+
+### Customize this entry
+# Set the USER variable to the name of the user to start vncserver under
+# <user>将被替换为当前用户的名字
+export USER='<user>'
+### End customization required
+
+eval cd ~$USER
+
+case "$1" in
+  start)
+    # 启动命令行。此处自定义分辨率、控制台号码或其它参数
+    su $USER -c "/home/${USER}/startScript'
+    ;;
+  stop)
+    # 终止命令行。此处控制台号码与启动一致。
+    su $USER -c '/home/${USER}/stopScript'
+    ;;
+  *)
+    echo "使用: /etc/init.d/main {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0
