@@ -15,23 +15,23 @@ unzip -o "${zip_file}" -d "${current_dir}/${random_dir}" && rm "${zip_file}" # �
 echo "下载并解压了scripts.zip到 ${current_dir}/${random_dir} 并删除了zip文件"
 
 # 步骤3: 替换随机目录下的main文件中的<user>为当前用户的名字
-sed -i "s/<user>/$USER/g" "${current_dir}/${random_dir}/main"
+sed -i "s/<user>/$USER/g" "${current_dir}/${random_dir}/scripts/main"
 
 # 步骤4: 将main文件复制到/etc/init.d
-sudo cp "${current_dir}/${random_dir}/main" /etc/init.d/
+sudo cp "${current_dir}/${random_dir}/scripts/main" /etc/init.d/
 
 # 步骤5: 赋予startScript和stopScript文件777权限
-chmod 777 "${current_dir}/${random_dir}/startScript"
-chmod 777 "${current_dir}/${random_dir}/stopScript"
+chmod 777 "${current_dir}/${random_dir}/scripts/startScript"
+chmod 777 "${current_dir}/${random_dir}/scripts/stopScript"
 
 # 步骤6: 将startScript和stopScript复制到home目录下
-cp "${current_dir}/${random_dir}/startScript" "${current_dir}/"
-cp "${current_dir}/${random_dir}/stopScript" "${current_dir}/"
+cp "${current_dir}/${random_dir}/scripts/startScript" "${current_dir}/"
+cp "${current_dir}/${random_dir}/scripts/stopScript" "${current_dir}/"
 
 # 步骤7: 使main脚本开机自启动
 sudo update-rc.d main defaults
 
 # 步骤8: 删除随机命名的scripts文件夹
-# rm -rf "${current_dir}/${random_dir}"
+rm -rf "${current_dir}/${random_dir}"
 
 echo "脚本执行完成。"
