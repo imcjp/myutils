@@ -46,5 +46,6 @@ echo "4. 查看服务状态：sudo systemctl status frpc@XXX" >> "${current_dir}
 echo "5. 停止服务：sudo systemctl stop frpc@XXX" >> "${current_dir}/${dirName}/readme.txt"
 echo "6. 重启服务：sudo systemctl restart frpc@XXX" >> "${current_dir}/${dirName}/readme.txt"
 echo "请替换 XXX 为您的配置文件名称，不包含.ini后缀。" >> "${current_dir}/${dirName}/readme.txt"
+cat "${current_dir}/${dirName}/readme.txt"
 
 echo "脚本执行完成。"
