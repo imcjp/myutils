@@ -9,7 +9,7 @@ bash ${scpPath}/ismount
 if [ $? -eq 1 ]; then
     projDir=${rootPath}/fateProj
     if [ "$tp" = "dev" ]; then
-        sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/2logs:${projDir}/projStk/1env:${projDir}/projStk/0source,upperdir=${projDir}/projStk/2dev,workdir=${projDir}/tmp $fd
+        sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/2logs:${projDir}/projStk/1env:${projDir}/projStk/0source,upperdir=${projDir}/projStk/3dev,workdir=${projDir}/tmp $fd
     elif [ "$tp" = "env" ]; then
         sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/0source,upperdir=${projDir}/projStk/1env,workdir=${projDir}/tmp $fd
     else

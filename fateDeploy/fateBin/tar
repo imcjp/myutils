@@ -18,17 +18,17 @@ if [ $? -eq 0 ]; then
     currentTime=$(date +"%Y%m%d%H%M%S")
 
     # 定义压缩文件的完整路径
-    backupFileName="2dev_${currentTime}.tar.gz"
+    backupFileName="3dev_${currentTime}.tar.gz"
     backupFilePath="${backupDir}/${backupFileName}"
 
     # 进行压缩操作
-    echo "现在开始备份 '2dev' ……"
-    tar -czf "${backupFilePath}" -C "${sourceDir}" "2dev"
+    echo "现在开始备份 '3dev' ……"
+    tar -czf "${backupFilePath}" -C "${sourceDir}" "3dev"
 
     # 输出结果
-    echo "备份 '2dev' 完成，备份路径为: ${backupFilePath}"
+    echo "备份 '3dev' 完成，备份路径为: ${backupFilePath}"
 else
-    echo "备份 '2dev' 失败……"
+    echo "备份 '3dev' 失败……"
 fi
 
 
