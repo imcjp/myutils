@@ -6,7 +6,10 @@ echo "当前文件夹路径: $current_dir"
 
 # 步骤2: 建立fateProj工程
 mkdir -p fateProj/projStk
-mkdir -p "${current_dir}/fateProj/projStk/{0source,1env,2logs,3dev}"
+mkdir -p "${current_dir}/fateProj/projStk/0source"
+mkdir -p "${current_dir}/fateProj/projStk/1env"
+mkdir -p "${current_dir}/fateProj/projStk/2logs"
+mkdir -p "${current_dir}/fateProj/projStk/3dev"
 echo "fateProj下创建了日志层，用户可以使用 'ftc cleanLogs' 将 3dev 层运行过程中产生的日志移到 2logs 层中，以便节省其空间"
 
 # 步骤3: 在当前文件夹下创建空文件夹fate、fateHub、fateOutput
