@@ -25,6 +25,9 @@ fi
 # 创建新的frpc@.service
 sudo cp "${current_dir}/${dirName}/systemd/frpc@.service" /etc/systemd/system
 
+# 重新加载systemd配置文件，确保新服务被正确加载
+sudo systemctl daemon-reload
+
 # 步骤4: 赋予frpc文件可执行权限
 chmod 555 "${current_dir}/${dirName}/frpc"
 
