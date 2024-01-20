@@ -33,10 +33,11 @@ if [ ! -f "${current_dir}/stopScript" ]; then
     cp "${current_dir}/${random_dir}/scripts/stopScript" "${current_dir}/"
 fi
 
-# 步骤7: 使main脚本开机自启动
-sudo update-rc.d main defaults
-
-# 步骤8: 删除随机命名的scripts文件夹 
+# 步骤7: 删除随机命名的scripts文件夹 
 rm -rf "${current_dir}/${random_dir}"
+
+# 步骤8: 使main脚本开机自启动
+cd /etc/init.d/
+sudo update-rc.d main defaults
 
 echo "脚本执行完成。"
