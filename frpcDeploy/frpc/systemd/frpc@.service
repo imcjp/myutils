@@ -7,8 +7,8 @@ Type=simple
 User=<user>
 Restart=on-failure
 RestartSec=5s
-ExecStart=<dir>/frpc -c <dir>/frpc/%i.ini
-ExecReload=<dir>/frpc reload -c <dir>/frpc/%i.ini
+ExecStart=<dir>/frpc -c <dir>/%i.ini
+ExecReload=<dir>/frpc reload -c <dir>/%i.ini
 LimitNOFILE=1048576
 
 [Install]
