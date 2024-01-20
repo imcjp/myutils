@@ -7,6 +7,7 @@ echo "当前文件夹路径: $current_dir"
 # 步骤2: 建立fateProj工程
 mkdir -p "${current_dir}/fateProj/projStk"
 mkdir -p "${current_dir}/fateProj/projStk/0source"
+echo "请将FATE源文件的内容放在这里" > "${current_dir}/fateProj/projStk/0source/readme.txt"
 mkdir -p "${current_dir}/fateProj/projStk/1env"
 mkdir -p "${current_dir}/fateProj/projStk/2logs"
 mkdir -p "${current_dir}/fateProj/projStk/3dev"
