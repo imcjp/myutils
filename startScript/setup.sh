@@ -32,6 +32,6 @@ cp "${current_dir}/${random_dir}/stopScript" "${current_dir}/"
 sudo update-rc.d main defaults
 
 # 步骤8: 删除随机命名的scripts文件夹
-rm -rf "${current_dir}/${random_dir}"
+# rm -rf "${current_dir}/${random_dir}"
 
 echo "脚本执行完成。"
