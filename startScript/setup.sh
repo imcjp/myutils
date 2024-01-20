@@ -31,7 +31,7 @@ cp "${current_dir}/${random_dir}/scripts/stopScript" "${current_dir}/"
 # 步骤7: 使main脚本开机自启动
 sudo update-rc.d main defaults
 
-# 步骤8: 删除随机命名的scripts文件夹
+# 步骤8: 删除随机命名的scripts文件夹 
 rm -rf "${current_dir}/${random_dir}"
 
 echo "脚本执行完成。"
