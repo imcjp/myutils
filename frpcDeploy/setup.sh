@@ -15,7 +15,7 @@ echo "下载并解压了${zip_file}到 ${current_dir}/${dirName} 并删除了zip
 
 # 步骤3: 替换随机目录下的main文件中的<user>为当前用户的名字
 sed -i "s/<user>/$USER/g" "${current_dir}/${dirName}/systemd/frpc@.service"
-sed -i "s/<dir>/${current_dir}/g" "${current_dir}/${dirName}"
+sed -i "s/<dir>/${current_dir}/g" "${current_dir}/${dirName}/systemd/frpc@.service"
 sudo ln -s "${current_dir}/${dirName}/systemd/frpc@.service" /etc/systemd/system
 
 # 步骤4: 赋予frpc文件可执行权限
