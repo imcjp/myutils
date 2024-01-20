@@ -17,13 +17,13 @@ echo "下载并解压了${zip_file}到 ${current_dir}/${dirName} 并删除了zip
 sed -i "s/<user>/$USER/g" "${current_dir}/${dirName}/systemd/frpc@.service"
 sed -i "s#<dir>#${current_dir}/${dirName}#g" "${current_dir}/${dirName}/systemd/frpc@.service"
 
-# 检查软链接是否存在，如果存在，则删除
+# 检查frpc@.service是否存在，如果存在，则删除
 if [ -L /etc/systemd/system/frpc@.service ]; then
     sudo rm /etc/systemd/system/frpc@.service
 fi
 
-# 创建新的软链接
-sudo ln -s "${current_dir}/${dirName}/systemd/frpc@.service" /etc/systemd/system
+# 创建新的frpc@.service
+sudo cp "${current_dir}/${dirName}/systemd/frpc@.service" /etc/systemd/system
 
 # 步骤4: 赋予frpc文件可执行权限
 chmod 555 "${current_dir}/${dirName}/frpc"

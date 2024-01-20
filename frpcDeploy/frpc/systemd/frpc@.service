@@ -1,6 +1,7 @@
 [Unit]
 Description=Frp Client Service
 After=network.target
+Wants=network.target
 
 [Service]
 Type=simple
