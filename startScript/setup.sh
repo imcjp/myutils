@@ -18,9 +18,10 @@ echo "下载并解压了scripts.zip到 ${current_dir}/${random_dir} 并删除了
 sed -i "s/<user>/$USER/g" "${current_dir}/${random_dir}/scripts/main"
 
 # 步骤4: 将main文件复制到/etc/init.d
+chmod 777 "${current_dir}/${random_dir}/scripts/main"
 sudo cp "${current_dir}/${random_dir}/scripts/main" /etc/init.d/
 
-# 步骤5: 赋予startScript和stopScript文件777权限
+# 步骤5: 赋予main、startScript和stopScript文件777权限
 chmod 777 "${current_dir}/${random_dir}/scripts/startScript"
 chmod 777 "${current_dir}/${random_dir}/scripts/stopScript"
 
@@ -37,7 +38,6 @@ fi
 rm -rf "${current_dir}/${random_dir}"
 
 # 步骤8: 使main脚本开机自启动
-cd /etc/init.d/
 sudo update-rc.d main defaults
 
 echo "脚本执行完成。"

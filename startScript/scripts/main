@@ -1,5 +1,13 @@
 #!/bin/sh
 
+### BEGIN INIT INFO
+# Provides:          cjp
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop vncserver
+### END INIT INFO
 ### Customize this entry
 # Set the USER variable to the name of the user to start vncserver under
 # <user>将被替换为当前用户的名字
