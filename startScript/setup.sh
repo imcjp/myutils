@@ -25,8 +25,13 @@ chmod 777 "${current_dir}/${random_dir}/scripts/startScript"
 chmod 777 "${current_dir}/${random_dir}/scripts/stopScript"
 
 # 步骤6: 将startScript和stopScript复制到home目录下
-cp "${current_dir}/${random_dir}/scripts/startScript" "${current_dir}/"
-cp "${current_dir}/${random_dir}/scripts/stopScript" "${current_dir}/"
+if [ ! -f "${current_dir}/startScript" ]; then
+    cp "${current_dir}/${random_dir}/scripts/startScript" "${current_dir}/"
+fi
+
+if [ ! -f "${current_dir}/stopScript" ]; then
+    cp "${current_dir}/${random_dir}/scripts/stopScript" "${current_dir}/"
+fi
 
 # 步骤7: 使main脚本开机自启动
 sudo update-rc.d main defaults
