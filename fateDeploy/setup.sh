@@ -11,9 +11,6 @@ echo "请将FATE源文件的内容放在这里" > "${current_dir}/fateProj/projS
 mkdir -p "${current_dir}/fateProj/projStk/1env"
 mkdir -p "${current_dir}/fateProj/projStk/2logs"
 mkdir -p "${current_dir}/fateProj/projStk/3dev"
-mkdir -p "${current_dir}/fateProj/ws"
-mkdir -p "${current_dir}/fateProj/ws/build"
-mkdir -p "${current_dir}/fateProj/ws/dev"
 mkdir -p "${current_dir}/fateProj/tmp"
 echo "fateProj下创建了日志层，用户可以使用 'ftc cleanLogs' 将 3dev 层运行过程中产生的日志移到 2logs 层中，以便节省其空间"
 
@@ -49,5 +46,7 @@ echo "将如下代码放到你的启动脚本中可以实现开机启动FATE框�
 echo "source ${current_dir}/fateBin/import"
 echo "ftc mount dev"
 echo "ftc start"
+echo "安装已完成，请将FATE源码放在 '${current_dir}/fateProj/projStk/0source/' 目录下"
+echo "随后使用 'ftc switch' 命令设置FATE框架的版本，即目录0source下的子文件夹名称"
 
 echo "所有设置完成。"

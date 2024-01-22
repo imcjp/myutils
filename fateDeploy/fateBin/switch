@@ -1,0 +1,35 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+fd=${rootPath}/fate
+projDir=${rootPath}/fateProj
+stkPath=${projDir}/projStk
+dir_path=$stkPath/0source
+
+
+# 获取目录下的文件夹列表
+folders=$(ls -l $dir_path | grep '^d' | awk '{print $9}')
+
+# 检查是否有文件夹存在
+if [ -z "$folders" ]; then
+  echo "没有找到任何FATE版本。"
+  exit 1
+fi
+
+# 显示可选择的FATE版本
+echo "可选择的FATE版本:"
+echo "$folders"
+
+# 提示用户输入
+echo "请输入您选择的FATE版本:"
+read user_choice
+
+# 检查用户输入是否是有效的文件夹
+if [[ " $folders " =~ " $user_choice " ]]; then
+  echo "您指定了版本：$user_choice"
+  echo "ftver=$user_choice" > ${scpPath}/__ver__
+else
+  echo "指定版本不存在。"
+  exit 1
+fi

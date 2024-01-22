@@ -2,24 +2,43 @@
 myPath=`readlink -f $0`
 scpPath="$(dirname "$myPath")"
 rootPath="$(dirname "$scpPath")"
+projDir=${rootPath}/fateProj
+stkPath=${projDir}/projStk
+
+source ${scpPath}/__ver__
+# 判断ftver变量是否存在
+if [ -z "${ftver}" ]; then
+  echo "FATE版本未指定"
+  exit 1
+fi
+
+# 判断/home/cjp/fateProj/projStk/下是否存在与ftver名字相同的子文件夹
+if [ ! -d "${stkPath}/0source/${ftver}" ]; then
+  echo "FATE版本指定错误，文件夹 '${stkPath}/0source/${ftver}' 不存在……"
+  exit 1
+fi
+
+echo "FATE版本检查通过，当前挂载的版本：$ftver"
 
 bash ${scpPath}/ismount
 if [ $? -eq 1 ]; then
-    cd ${rootPath}/fateProj/projStk
-    if [ -d "3dev/data" ]; then
-        mv 3dev/fate_sqlite.db 2logs/
-        rsync -avh --remove-source-files 3dev/fateflow/jobs 2logs/fateflow/ && rm -rf 3dev/fateflow/jobs
-        rsync -avh --remove-source-files 3dev/fateboard/logs 2logs/fateboard/ && rm -rf 3dev/fateboard/logs
-        rsync -avh --remove-source-files 3dev/fateflow/logs 2logs/fateflow/ && rm -rf 3dev/fateflow/logs
-        rsync -avh --remove-source-files 3dev/fateflow/model_local_cache 2logs/fateflow/ && rm -rf 3dev/fateflow/model_local_cache
-        rsync -avh --remove-source-files 3dev/fateflow/provider_registrar 2logs/fateflow/ && rm -rf 3dev/fateflow/provider_registrar
-        rsync -avh --remove-source-files 3dev/data 2logs/ && rm -rf 3dev/data
+    cd ${stkPath}
+    d3dev="3dev/${ftver}"
+    d2logs="2logs/${ftver}"
+    if [ -d "${d3dev}/data" ]; then
+        mv "${d3dev}/fate_sqlite.db" "${d2logs}/"
+        rsync -avh --remove-source-files "${d3dev}/fateflow/jobs" "${d2logs}/fateflow/" && rm -rf "${d3dev}/fateflow/jobs"
+        rsync -avh --remove-source-files "${d3dev}/fateboard/logs" "${d2logs}/fateboard/" && rm -rf "${d3dev}/fateboard/logs"
+        rsync -avh --remove-source-files "${d3dev}/fateflow/logs" "${d2logs}/fateflow/" && rm -rf "${d3dev}/fateflow/logs"
+        rsync -avh --remove-source-files "${d3dev}/fateflow/model_local_cache" "${d2logs}/fateflow/" && rm -rf "${d3dev}/fateflow/model_local_cache"
+        rsync -avh --remove-source-files "${d3dev}/fateflow/provider_registrar" "${d2logs}/fateflow/" && rm -rf "${d3dev}/fateflow/provider_registrar"
+        rsync -avh --remove-source-files "${d3dev}/data ${d2logs}/" && rm -rf "${d3dev}/data"
     fi
     if [ $? -eq 0 ]; then
-        echo '已经将FATE 框架的 3dev 层的日志信息清理到 2logs 层。'
+        echo "已经将FATE 框架的 ${d3dev} 的日志信息清理到 ${d2logs} 。"
         exit 0
     else
-        echo '无法将 3dev 层的日志清理到 2logs 层。'
+        echo "无法将 ${d3dev} 的日志清理到 ${d2logs} 。"
         exit 1
     fi
 else

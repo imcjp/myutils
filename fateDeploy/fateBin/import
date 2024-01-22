@@ -21,3 +21,16 @@ ftc() {
         return 1
     fi
 }
+echo "命令 'ftc' 已设置，您可以使用 'ftc <cmd> <args>' 来管理FATE框架"
+
+#“层次开发框架”翻译为 "Hierarchical Development Framework"，缩写为 "HDF"。
+fthdf() {
+  local hdf_scp_dir="$(dirname "${BASH_SOURCE[0]}")"
+  if [ "$1" = "cd" ]; then
+#    bash $hdf_scp_dir/main "$@"
+    cd $(bash $hdf_scp_dir/main "$@")
+  else
+    bash $hdf_scp_dir/main "$@"
+  fi
+}
+echo "命令 'fthdf' 已设置，您可以使用 'fthdf <cmd> <args>' 来管理FATE存储开发项目，即 'fateProj/projStk/' 的各级目录"

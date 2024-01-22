@@ -2,16 +2,37 @@
 myPath=`readlink -f $0`
 scpPath="$(dirname "$myPath")"
 rootPath="$(dirname "$scpPath")"
+fd=${rootPath}/fate
+projDir=${rootPath}/fateProj
+stkPath=${projDir}/projStk
+
+source ${scpPath}/__ver__
+# 判断ftver变量是否存在
+if [ -z "${ftver}" ]; then
+  echo "FATE版本未指定"
+  exit 1
+fi
+
+# 判断/home/cjp/fateProj/projStk/下是否存在与ftver名字相同的子文件夹
+if [ ! -d "${stkPath}/0source/${ftver}" ]; then
+  echo "FATE版本指定错误，文件夹 '${stkPath}/0source/${ftver}' 不存在……"
+  exit 1
+fi
+
+echo "FATE版本检查通过，当前挂载的版本：$ftver"
+# 确保待挂载的文件夹存在
+mkdir -p ${stkPath}/0source/${ftver}
+mkdir -p ${stkPath}/1env/${ftver}
+mkdir -p ${stkPath}/2logs/${ftver}
+mkdir -p ${stkPath}/3dev/${ftver}
 
 tp="$1"
-fd=${rootPath}/fate
 bash ${scpPath}/ismount
 if [ $? -eq 1 ]; then
-    projDir=${rootPath}/fateProj
     if [ "$tp" = "dev" ]; then
-        sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/2logs:${projDir}/projStk/1env:${projDir}/projStk/0source,upperdir=${projDir}/projStk/3dev,workdir=${projDir}/tmp $fd
+        sudo mount -t overlay overlay -o lowerdir=${stkPath}/2logs/${ftver}:${stkPath}/1env/${ftver}:${stkPath}/0source/${ftver},upperdir=${stkPath}/3dev/${ftver},workdir=${projDir}/tmp $fd
     elif [ "$tp" = "env" ]; then
-        sudo mount -t overlay overlay -o lowerdir=${projDir}/projStk/0source,upperdir=${projDir}/projStk/1env,workdir=${projDir}/tmp $fd
+        sudo mount -t overlay overlay -o lowerdir=${stkPath}/0source/${ftver},upperdir=${stkPath}/1env/${ftver},workdir=${projDir}/tmp $fd
     else
         echo "请输入合法的mount类型如下：env, dev"
     fi

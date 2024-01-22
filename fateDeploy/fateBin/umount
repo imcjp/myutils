@@ -6,6 +6,7 @@ rootPath="$(dirname "$scpPath")"
 fd=${rootPath}/fate
 bash ${scpPath}/ismount
 if [ $? -eq 0 ]; then
+    sudo fuser -km ${fd}
     sudo umount ${fd}
     echo "mount status of '$fd':"
     mount | grep "overlay on $fd type"

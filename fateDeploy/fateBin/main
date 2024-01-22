@@ -1,0 +1,62 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+projPath="$(dirname "$scpPath")/fateProj"
+stkPath="${projPath}/projStk"
+dbCmd="$1"
+if [ -z "$1" ]; then
+  dbCmd="help"
+fi
+if [ "$dbCmd" = "df" ]; then
+    if [ -z "$3" ]; then
+        path1="0source"
+        echo "待对比的文件夹A未指定，默认设为${path1}"
+    else
+        path1="$3"
+    fi
+    if [ -z "$4" ]; then
+        path2="2dev"
+        echo "待对比的文件夹B未指定，默认设为${path2}"
+    else
+        path2="$4"
+    fi
+    python "${scpPath}/fdiff.py" -p "${stkPath}/${path1}" "${stkPath}/${path2}" "$2"
+elif [ "$dbCmd" = "rmdup" ]; then
+    if [ -z "$2" ]; then
+        echo "Error: 待清理的目录名（参数1）未指定" >&2
+        exit 1
+    fi
+    if [ -z "$3" ]; then
+        echo "Error: 用于比较重复的目录名（参数2）未指定" >&2
+        exit 1
+    fi
+    echo "待清理的目录名为：${stkPath}/$2"
+    echo "用于比较重复的目录名为：${stkPath}/$3"
+    echo "您是否希望继续？请输入 'y' 确认，输入其他取消。"
+    read -r answer
+    # 将输入转换为小写
+    answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
+    # 判断输入是否为'y'
+    if [ "$answer" = "y" ]; then
+        python "${scpPath}/rmdup.py" -r "${stkPath}/$2" "${stkPath}/$3"
+    else
+        echo "未确认，脚本退出。"
+        exit 1
+    fi
+elif [ "$dbCmd" = "cd" ]; then
+    tagetPath=$(python "${scpPath}/changeDir.py" "${projPath}" "." "$2")
+    echo "${tagetPath}"
+elif [ "$dbCmd" = "pwd" ]; then
+    echo "脚本的路径: ${myPath}"
+    echo "python脚本的所在目录: ${scpPath}"
+    echo "关联的项目路径: ${stkPath}"
+elif [ "$dbCmd" = "help" ]; then
+    echo "Common Line: mydev <pycmd> [<arg>], The available commands are:"
+    echo "==> df [指定待比较的文件或文件夹，若不指定则直接对比projStk/0source和projStk/2dev] [待对比的文件夹A] [待对比的文件夹B]"
+    python "${scpPath}/fdiff.py" -h
+    echo "==> rmdup (projStk下待清理的目录名，如2dev) (projStk下用于比较重复的目录名，如0source)"
+    python "${scpPath}/rmdup.py" -h
+    echo "==> cd (跳转到ws或projStk下的目录。路径的匹配规则是全称优先，其次为文件夹名称匹配，最后是模式匹配)"
+    python "${scpPath}/changeDir.py" -h
+    echo "  pwd: Show the work directory of mydev. "
+fi
