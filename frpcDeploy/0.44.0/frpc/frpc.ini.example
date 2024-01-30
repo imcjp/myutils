@@ -1,0 +1,18 @@
+[common]
+tls_enable = true
+server_addr = XX.XX.XX.XX
+server_port = XXX
+auth_token = XXX
+
+[name1]
+type = tcp
+local_ip = XX.XX.XX.XX
+local_port = XXX
+remote_port = XXX
+
+[name2]
+type = http
+local_ip = XX.XX.XX.XX
+local_port = XXX
+remote_port = XXX
+custom_domains = www.abc.com

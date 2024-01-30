@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 设置frp版本
+version=0.53.2
+
 # 步骤1: 获得home目录的路径
 current_dir=$(pwd)
 echo "当前文件夹路径: $current_dir"
@@ -7,11 +10,12 @@ echo "当前文件夹路径: $current_dir"
 # 步骤2: 使用wget下载scripts.zip并解压到一个随机命名的目录，确保在原始目录下进行
 cd "${current_dir}" # 确保在原始目录下
 dirName="frpc"
-zip_file="frpc.zip"
+tar_file="frpc.tar.gz"
 
-wget "https://raw.githubusercontent.com/imcjp/myutils/main/frpcDeploy/${zip_file}"
-unzip -o "${zip_file}" -d "${current_dir}" && rm "${zip_file}" # 解压并删除zip文件
-echo "下载并解压了${zip_file}到 ${current_dir}/${dirName} 并删除了zip文件"
+wget "https://raw.githubusercontent.com/imcjp/myutils/main/frpcDeploy/${version}/${tar_file}"
+tar -zxvf "${tar_file}" -C "${current_dir}" && rm "${tar_file}" # 解压并删除tar.gz文件 
+echo "下载并解压了${tar_file}到 ${current_dir}/${dirName} 并删除了tar.gz文件"
+
 
 # 步骤3: 替换随机目录下的main文件中的<user>为当前用户的名字
 sed -i "s/<user>/$USER/g" "${current_dir}/${dirName}/systemd/frpc@.service"
