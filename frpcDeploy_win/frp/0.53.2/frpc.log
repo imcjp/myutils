@@ -1,0 +1,11 @@
+2024/01/30 20:25:31 [I] [root.go:141] start frpc service for config file [frpc.toml]
+2024/01/30 20:25:31 [I] [service.go:287] try to connect to server...
+2024/01/30 20:25:32 [I] [service.go:279] [6e9ef30d87e928ae] login to server success, get run id [6e9ef30d87e928ae]
+2024/01/30 20:25:32 [I] [proxy_manager.go:173] [6e9ef30d87e928ae] proxy added: [h0[408服务器1].00:远程桌面 h0[408服务器1].01:本机ssh连接 h0[408服务器1].02:内置虚拟机的端口映射 h0[408服务器1].03:myds服务的映射 h0[408服务器1].11:408服务器的实验平台远程接口1 h0[408服务器1].12:408服务器的实验平台远程接口2 h0[408服务器1].13:408服务器的实验平台远程接口3]
+2024/01/30 20:25:32 [I] [control.go:169] [6e9ef30d87e928ae] [h0[408服务器1].01:本机ssh连接] start proxy success
+2024/01/30 20:25:32 [I] [control.go:169] [6e9ef30d87e928ae] [h0[408服务器1].00:远程桌面] start proxy success
+2024/01/30 20:25:32 [I] [control.go:169] [6e9ef30d87e928ae] [h0[408服务器1].03:myds服务的映射] start proxy success
+2024/01/30 20:25:32 [I] [control.go:169] [6e9ef30d87e928ae] [h0[408服务器1].02:内置虚拟机的端口映射] start proxy success
+2024/01/30 20:25:32 [I] [control.go:169] [6e9ef30d87e928ae] [h0[408服务器1].11:408服务器的实验平台远程接口1] start proxy success
+2024/01/30 20:25:32 [I] [control.go:169] [6e9ef30d87e928ae] [h0[408服务器1].12:408服务器的实验平台远程接口2] start proxy success
+2024/01/30 20:25:32 [I] [control.go:169] [6e9ef30d87e928ae] [h0[408服务器1].13:408服务器的实验平台远程接口3] start proxy success

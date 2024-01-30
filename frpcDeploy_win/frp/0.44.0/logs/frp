@@ -1,0 +1,20 @@
+2023/05/26 08:35:47 [I] [service.go:326] [8a614c9ee70fd4d3] login to server success, get run id [8a614c9ee70fd4d3], server udp port [51743]
+2023/05/26 08:35:47 [I] [proxy_manager.go:144] [8a614c9ee70fd4d3] proxy added: [win_0_0 win_0_3 win_0_4 win_common ChatGPT1 ssh_0_0 ssh_0_1 ssh_0_2 ChatGPT]
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [win_0_3] start error: port already used
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [win_0_4] start error: port already used
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [win_common] start error: port already used
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [ChatGPT1] start error: port already used
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [ssh_0_0] start error: port already used
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [ssh_0_1] start error: port already used
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [ssh_0_2] start error: port already used
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [ChatGPT] start error: router config conflict
+2023/05/26 08:35:47 [W] [control.go:179] [8a614c9ee70fd4d3] [win_0_0] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [win_0_3] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [win_0_4] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [ssh_0_1] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [ChatGPT] start error: router config conflict
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [ssh_0_0] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [win_common] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [ChatGPT1] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [ssh_0_2] start error: port already used
+2023/05/26 08:36:20 [W] [control.go:179] [8a614c9ee70fd4d3] [win_0_0] start error: port already used
