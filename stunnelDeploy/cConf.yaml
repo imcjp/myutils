@@ -1,0 +1,47 @@
+#解析表达式规则：
+#1、解析表达式为字符串且第一个字符为'='，其后的内容即为待解析的python表达式
+#2、python表达式可以解析出数组，但多个数组的长度务必一样
+#3、解析表达式中可用的变量、函数如下：
+#  a) data：即来自相同配置项下的data数据。使用data.XX的方式引用。
+#  b) flat: 数组展平函数，它可以将二维数组展平为一维。
+
+#客户端示例，注意accept不必和connect一样
+rules:
+  simple:
+    # 简单配置
+    conf:
+      cert: pri_client.pem
+      key: pri_client.pem
+      CAfile: pub_server.pem
+      verify: 3
+      client: "yes"
+      accept: 80
+      connect: server_domain:80
+  sequence:
+    # 序列配置，连接2000-2009
+    data:
+      acceptStart: 2000
+      connectStart: 2000
+      len: 10
+    conf:
+      cert: pri_client.pem
+      key: pri_client.pem
+      CAfile: pub_server.pem
+      verify: 3
+      client: "yes"
+      accept: =[data.acceptStart+i for i in range(data.len)]
+      connect: =[f"server_domain:{data.connectStart+i}" for i in range(data.len)]
+  matrix:
+    # 矩阵化部署配置，连接到2XXYY，其中XX即为站点的编号（portSizes的组数下标），YY可取值范围为0 ~ portSizes[XX]-1，表示为XX站点开的端口数量
+    data:
+      portSizes: [3,4,6]
+      connectPre: 1
+      acceptPre: 2
+    conf:
+      cert: pri_client.pem
+      key: pri_client.pem
+      CAfile: pub_server.pem
+      verify: 3
+      client: "yes"
+      accept: =flat([[f"{data.acceptPre}"+"{:02d}".format(i)+"{:02d}".format(j) for j in range(sz)] for i, sz in enumerate(data.portSizes)])
+      connect: =flat([[f"server_domain:{data.connectPre}"+"{:02d}".format(i)+"{:02d}".format(j) for j in range(sz)] for i, sz in enumerate(data.portSizes)])

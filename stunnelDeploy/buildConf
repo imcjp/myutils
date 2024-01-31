@@ -1,0 +1,19 @@
+#!/bin/sh
+#confBuilder.py has been deployed to the pipy project cjptools
+YAML_FILE="$1"
+if [ -z "$YAML_FILE" ]; then
+    echo "Please provide a YAML file path."
+    exit 1
+fi
+
+python -c "from cjptools import confBuilder; confBuilder.build('$YAML_FILE')" > /etc/stunnel/stunnel.conf
+
+if [ $? -ne 0 ]; then
+    echo "Failed to build configuration."
+    exit 1
+else
+    echo "Configuration successfully written to stunnel.conf"
+    cat /etc/stunnel/stunnel.conf
+fi
+
+exit 0
