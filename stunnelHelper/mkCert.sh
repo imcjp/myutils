@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# 检查是否提供了名字参数
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 NAME"
+# 提示用户输入名字并读取输入的名字到变量NAME
+echo "请输入您想要的名字 (NAME) 并按回车键确认："
+read NAME
+
+# 检查用户是否输入了名字
+if [ -z "$NAME" ]; then
+    echo "没有提供名字，脚本退出。"
     exit 1
 fi
-
-NAME=$1
 
 # 生成密钥对
 openssl req -new -x509 -days 36500 -nodes -out "${NAME}_server_key.pem" -keyout "${NAME}_server_key.pem"
