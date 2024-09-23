@@ -64,10 +64,12 @@ openssl req -new -key client.key -out client.csr -config "$SSL_CNF"
 # 使用 CA 签发客户端证书
 openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 500 -sha256 -extfile "$SSL_CNF" -extensions req_ext
 
-cd ..
 
 # 打包为 zip，保留在当前目录
 zip "${NAME}.zip" ca.key ca.crt server.key server.crt client.key client.crt -j
+
+cd ..
+mv "$TMP/${NAME}.zip" .
 
 # 删除 TMP 目录
 rm -rf "$TMP"
