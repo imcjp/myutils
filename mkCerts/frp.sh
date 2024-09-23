@@ -26,14 +26,19 @@ if ! command -v zip &> /dev/null; then
     exit 1
 fi
 
-# 检查目录是否存在
-if [ -d "$NAME" ]; then
-    echo "目录 '$NAME' 已存在，停止执行。"
+# 生成一个随机的 TMP 名称
+TMP=$(mktemp -d "tmp.XXXXXX")
+
+# 检查是否成功创建 TMP 目录
+if [ ! -d "$TMP" ]; then
+    echo "无法创建临时目录。"
     exit 1
-else
-    mkdir "$NAME"
-    cd "$NAME" || exit
 fi
+
+echo "使用的 TMP 目录: $TMP"
+
+# 切换到 TMP 目录
+cd "$TMP" || exit
 
 # 生成 CA 密钥
 openssl genrsa -out ca.key 2048
@@ -58,3 +63,13 @@ openssl req -new -key client.key -out client.csr -config "$SSL_CNF"
 
 # 使用 CA 签发客户端证书
 openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 500 -sha256 -extfile "$SSL_CNF" -extensions req_ext
+
+cd ..
+
+# 打包为 zip，保留在当前目录
+zip "${NAME}.zip" ca.key ca.crt server.key server.crt client.key client.crt -j
+
+# 删除 TMP 目录
+rm -rf "$TMP"
+
+echo "操作完成。生成的 ZIP 包为: ${NAME}.zip"
