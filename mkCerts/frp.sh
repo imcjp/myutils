@@ -9,6 +9,14 @@ fi
 # 将 SSL_CNF 转换为绝对路径
 SSL_CNF=$(realpath "$1")
 
+# 检查 SSL_CNF 是否存在
+if [ ! -f "$SSL_CNF" ]; then
+    echo "配置文件 '$SSL_CNF' 不存在。"
+    echo "请通过以下命令下载模板文件："
+    echo "wget https://raw.githubusercontent.com/imcjp/myutils/main/mkCerts/openssl.cnf"
+    exit 1
+fi
+
 # 如果只提供一个参数，设置 NAME 为 certs
 if [ "$#" -eq 1 ]; then
     NAME="certs"
@@ -63,7 +71,6 @@ openssl req -new -key client.key -out client.csr -config "$SSL_CNF"
 
 # 使用 CA 签发客户端证书
 openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 500 -sha256 -extfile "$SSL_CNF" -extensions req_ext
-
 
 # 打包为 zip，保留在当前目录
 zip "${NAME}.zip" ca.key ca.crt server.key server.crt client.key client.crt -j
