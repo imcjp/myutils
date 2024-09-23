@@ -1,0 +1,20 @@
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+prompt             = no
+
+[ req_distinguished_name ]
+C  = CN
+ST = State
+L  = City
+O  = Organization
+OU = Organizational Unit
+CN = your.server.hostname  # 替换为服务器的主机名
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = your.server.hostname  # 替换为服务器的主机名
+DNS.2 = another.hostname      # 如果需要，添加其他主机名
