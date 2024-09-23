@@ -8,7 +8,13 @@ curl -s https://raw.githubusercontent.com/imcjp/myutils/main/mkCerts/stunnel.sh 
 ```
 
 ## 快速创建frp的服务端和客户端的证书
-首先从本站获取openssl.cnf，可以通过如下方式得到示例：
+
+部署命令如下，其中第一个参数是SSL配置文件SSL_CNF（即以下openssl.cnf）；${NAME}是生成完要打包的zip包名称，默认为certs。
+```bash
+curl -s https://raw.githubusercontent.com/imcjp/myutils/main/mkCerts/frp.sh | bash -s -- openssl.cnf ${NAME}
+```
+
+部署前，请先从本站获取openssl.cnf，可以通过如下方式得到示例：
 ```bash
 wget https://raw.githubusercontent.com/imcjp/myutils/main/mkCerts/openssl.cnf
 ```
@@ -37,8 +43,3 @@ DNS.2 = another.hostname      # 如果需要，添加其他主机名
 ```
 
 
-其中，第一个参数是SSL配置文件SSL_CNF（即上述openssl.cnf）；${NAME}是生成完要打包的zip包名称，默认为certs。
-
-```bash
-curl -s https://raw.githubusercontent.com/imcjp/myutils/main/mkCerts/frp.sh | bash -s -- openssl.cnf ${NAME}
-```
