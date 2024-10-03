@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Nginx 配置目录
+SITES_AVAILABLE="/etc/nginx/sites-available"
+SITES_ENABLED="/etc/nginx/sites-enabled"
+
+# 启用站点
+enable_site() {
+    ln -s "$SITES_AVAILABLE/$1" "$SITES_ENABLED/"
+    echo "Site  $1 enabled."
+}
+
+# 禁用站点
+disable_site() {
+    rm "$SITES_ENABLED/$1"
+    echo "Site  $1 disabled."
+}
+
+# 检查参数
+if [ "$1" == "en" ] && [ -n "$2" ]; then
+    enable_site "$2"
+elif [ "$1" == "dis" ] && [ -n "$2" ]; then
+    disable_site "$2"
+else
+    echo "Usage:  $0 {en|dis} <site-name>"
+    exit 1
+fi
+
+# 测试 Nginx 配置
+sudo nginx -t
+
+# 重新加载 Nginx
+sudo systemctl reload nginx

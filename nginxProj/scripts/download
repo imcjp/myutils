@@ -1,0 +1,31 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+
+cd ${rootPath}
+version=$1
+
+# 定义目录名
+nginx_dir="nginx-${version}"
+
+# 检查目录是否存在
+if [ ! -d "$nginx_dir" ]; then
+    echo "目录 $nginx_dir 不存在，正在下载 Nginx ${version}..."
+    
+    # 下载 Nginx 源码包
+    wget "http://nginx.org/download/nginx-${version}.tar.gz"
+    
+    # 解压缩并删除
+    tar -zxvf "nginx-${version}.tar.gz"
+    rm "nginx-${version}.tar.gz"
+    
+    echo "Nginx ${version} 下载并解压完成。"
+else
+    echo "目录 $nginx_dir 已存在。"
+fi
+
+cd ${nginx_dir}
+pwd
+#rm ${scpPath}/nginx
+#ln -s $(pwd) ${scpPath}/nginx

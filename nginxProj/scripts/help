@@ -1,0 +1,7 @@
+#!/bin/sh
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+cd ${scpPath}
+echo "以下是可用的命令。您可以使用 'ng <cmd> <args>' 来管理Ngnix框架"
+echo "其中，import用于写在.bashrc文件中使命令生效。如：source /home/ubuntu/nginxProj/scripts/import"
+ls -la | sort

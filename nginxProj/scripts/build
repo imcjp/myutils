@@ -1,0 +1,20 @@
+#!/bin/bash
+myPath=`readlink -f $0`
+scpPath="$(dirname "$myPath")"
+rootPath="$(dirname "$scpPath")"
+
+cd ${rootPath}
+version=$1
+
+# 定义目录名
+nginx_dir="nginx-${version}"
+
+cd ${nginx_dir}
+
+. ../build_conf
+
+make
+sudo make install
+sudo rm /usr/sbin/nginx 2>/dev/null || true
+sudo cp /usr/share/nginx/sbin/nginx /usr/sbin/nginx
+sudo nginx -V

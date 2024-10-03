@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# 检查 Apache2 和 Nginx 的状态
+apache_status=$(systemctl is-active apache2)
+nginx_status=$(systemctl is-active nginx)
+
+if [ "$apache_status" = "active" ] && [ "$nginx_status" = "active" ]; then
+    echo "两者都已启动，正在关闭 Apache2..."
+    sudo systemctl stop apache2
+    echo "Apache2 已关闭。"
+elif [ "$apache_status" = "active" ]; then
+    echo "Apache2 正在运行，Nginx 未启动，正在启动 Nginx..."
+    sudo systemctl stop apache2
+    sudo systemctl start nginx
+    echo "Nginx 已启动。"
+elif [ "$nginx_status" = "active" ]; then
+    echo "Nginx 正在运行，Apache2 未启动，正在启动 Apache2..."
+    sudo systemctl stop nginx
+    sudo systemctl start apache2
+    echo "Apache2 已启动。"
+else
+    echo "两个服务都未启动，正在启动 Nginx..."
+    sudo systemctl start nginx
+    echo "Nginx 已启动。"
+fi

@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo systemctl restart nginx.service && echo "重启nginx成功" || echo "重启nginx失败" 

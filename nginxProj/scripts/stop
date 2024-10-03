@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo systemctl stop nginx.service && echo "停止nginx成功" || echo "停止nginx失败" 
