@@ -33,6 +33,9 @@
     --with-stream=dynamic \
     --with-stream_ssl_module \
     --with-mail=dynamic \
-    --with-mail_ssl_module\
+    --with-mail_ssl_module
+
+# 附加模块
+./configure \
     --add-module=./nginx-dav-ext-module\
     --add-module=./echo-nginx-module
