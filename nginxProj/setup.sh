@@ -16,4 +16,4 @@ echo "下载并解压了${tar_file}到 ${current_dir}/${dirName} 并删除了tar
 # 提示用户如何使用 nginxProj
 echo "使用方法："
 echo "请将 '${current_dir}/${dirName}/scripts/import' 加入 '.bashrc' 以使用ng命令进行管理。"
-echo "请将 '${current_dir}/${dirName}/scripts/import' 加入 '.bashrc' 以使用ng命令进行管理。"
+echo "请编辑 '${current_dir}/${dirName}/build_conf' 设置nginx编译选项或附加模块。"
