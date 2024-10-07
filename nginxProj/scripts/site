@@ -6,13 +6,13 @@ SITES_ENABLED="/etc/nginx/sites-enabled"
 
 # 启用站点
 enable_site() {
-    ln -s "$SITES_AVAILABLE/$1" "$SITES_ENABLED/"
+    sudo ln -s "$SITES_AVAILABLE/$1" "$SITES_ENABLED/"
     echo "Site  $1 enabled."
 }
 
 # 禁用站点
 disable_site() {
-    rm "$SITES_ENABLED/$1"
+    sudo rm "$SITES_ENABLED/$1"
     echo "Site  $1 disabled."
 }
 

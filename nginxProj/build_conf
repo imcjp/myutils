@@ -1,3 +1,5 @@
+MODULE_PATH="../modules"
+
 ./configure \
     --with-cc-opt="-g -O2 -fdebug-prefix-map=/build/nginx-09OHwu/nginx-${version}=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Wdate-time -D_FORTIFY_SOURCE=2" \
     --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fPIC' \
@@ -32,10 +34,9 @@
     --with-http_xslt_module=dynamic \
     --with-stream=dynamic \
     --with-stream_ssl_module \
+    --with-stream_ssl_preread_module \
     --with-mail=dynamic \
-    --with-mail_ssl_module
-
-# 附加模块
-./configure \
-    --add-module=./nginx-dav-ext-module\
-    --add-module=./echo-nginx-module
+    --with-mail_ssl_module \
+    --add-module=${MODULE_PATH}/nginx-dav-ext-module\
+    --add-module=${MODULE_PATH}/echo-nginx-module\
+    --add-dynamic-module=${MODULE_PATH}/ngx_http_geoip2_module
