@@ -26,7 +26,7 @@ install_file="trojan-go-linux-amd64.zip"
 wget "https://github.com/p4gefau1t/trojan-go/releases/download/v${version}/${install_file}"
 sudo apt install unzip
 unzip "${install_file}"
-
+rm "${install_file}"
 
 # 步骤3: 替换随机目录下的main文件中的<user>为当前用户的名字
 sed -i "s/<user>/$USER/g" "systemd/trojan-go@.service"
