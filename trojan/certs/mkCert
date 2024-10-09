@@ -6,16 +6,8 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 NAME=$1
-# 将 SSL_CNF 转换为绝对路径
-SSL_CNF="openssl.cnf"
 
 # 显示用户输入的变量
-echo "使用的 NAME: $NAME"
-
-# 生成密钥
-openssl genrsa -out "${NAME}.key" 2048
-
-# 生成 CSR
-openssl req -new -key "${NAME}.key" -out "${NAME}.crt" -config "$SSL_CNF"
+sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout "${NAME}.key" -out "${NAME}.crt"
 
 echo "操作完成。生成的证书：${NAME}.key 和 ${NAME}.crt"
