@@ -63,7 +63,7 @@ echo "6. 重启服务：sudo systemctl restart trojan-go@XXX" >> "readme.txt"
 echo "请替换 XXX 为您的配置文件名称，不包含.json后缀。" >> "readme.txt"
 echo "----- 证书生成指南 -----------------" >> "readme.txt"
 echo "请进入 '${current_dir}/certs' 目录，然后运行如下指令生成证书：" >> "readme.txt"
-echo "bash mkCert.sh [NAME]" >> "readme.txt"
+echo "bash mkCert [NAME]" >> "readme.txt"
 echo "其中 [NAME] 为证书的名字，运行后将得到 [NAME].crt 和 [NAME].key。" >> "readme.txt"
 echo "注意编辑 openssl.cnf 中的CN和DNS.1字段，使其生成的证书域名匹配 trojan 的域名（即 sni 属性）。" >> "readme.txt"
 cat readme.txt
