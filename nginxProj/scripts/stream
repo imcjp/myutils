@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# cd到/etc/nginx/
+cd /etc/nginx/
+
+# 判断 "include /etc/nginx/stream-enabled/*;" 是否在 nginx.conf 中
+if ! grep -q "include /etc/nginx/stream-enabled/\*;" nginx.conf; then
+    # 若不存在，加入以下内容到 nginx.conf 的尾部
+    sudo bash -c 'echo -e "\nstream {\n\tinclude /etc/nginx/stream-enabled/*;\n}" >> nginx.conf'
+
+    # 创建stream-availble和stream-enabled文件夹
+    sudo mkdir -p stream-available stream-enabled
+
+    # 赋予stream-available权限为777
+    sudo chmod 777 stream-available
+fi
+
+# Nginx 配置目录
+SITES_AVAILABLE="/etc/nginx/stream-available"
+SITES_ENABLED="/etc/nginx/stream-enabled"
+
+# 启用站点
+enable_site() {
+    sudo ln -s "$SITES_AVAILABLE/$1" "$SITES_ENABLED/"
+    echo "Site  $1 enabled."
+}
+
+# 禁用站点
+disable_site() {
+    sudo rm "$SITES_ENABLED/$1"
+    echo "Site  $1 disabled."
+}
+
+# 检查参数
+if [ "$1" == "en" ] && [ -n "$2" ]; then
+    enable_site "$2"
+elif [ "$1" == "dis" ] && [ -n "$2" ]; then
+    disable_site "$2"
+else
+    echo "Usage:  $0 {en|dis} <site-name>"
+    exit 1
+fi
+
+# 测试 Nginx 配置
+sudo nginx -t
+
+# 重新加载 Nginx
+sudo systemctl reload nginx
