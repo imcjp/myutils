@@ -5,6 +5,8 @@ cd /etc/nginx/
 
 # 判断 "include /etc/nginx/stream-enabled/*;" 是否在 nginx.conf 中
 if ! grep -q "include /etc/nginx/stream-enabled/\*;" nginx.conf; then
+    echo "The include statement was not found in nginx.conf. Adding the stream block."
+
     # 若不存在，加入以下内容到 nginx.conf 的尾部
     sudo bash -c 'echo -e "\nstream {\n\tinclude /etc/nginx/stream-enabled/*;\n}" >> nginx.conf'
 
