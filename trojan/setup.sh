@@ -65,7 +65,7 @@ echo "----- 证书生成指南 -----------------" >> "readme.txt"
 echo "请进入 '${current_dir}/certs' 目录，然后运行如下指令生成证书：" >> "readme.txt"
 echo "bash mkCert [NAME]" >> "readme.txt"
 echo "其中 [NAME] 为证书的名字，运行后将得到 [NAME].crt 和 [NAME].key。" >> "readme.txt"
-echo "注意编辑 openssl.cnf 中的CN和DNS.1字段，使其生成的证书域名匹配 trojan 的域名（即 sni 属性）。" >> "readme.txt"
+
 cat readme.txt
 
 echo "脚本执行完成。"

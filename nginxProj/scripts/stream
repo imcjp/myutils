@@ -24,13 +24,13 @@ SITES_ENABLED="/etc/nginx/stream-enabled"
 # 启用站点
 enable_site() {
     sudo ln -s "$SITES_AVAILABLE/$1" "$SITES_ENABLED/"
-    echo "Site  $1 enabled."
+    echo "Stream  $1 enabled."
 }
 
 # 禁用站点
 disable_site() {
     sudo rm "$SITES_ENABLED/$1"
-    echo "Site  $1 disabled."
+    echo "Stream  $1 disabled."
 }
 
 # 检查参数
