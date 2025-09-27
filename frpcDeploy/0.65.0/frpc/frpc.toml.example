@@ -1,0 +1,20 @@
+user = "服务器名"
+serverAddr = <远程服务器IP>
+serverPort = <远程服务器端口>
+auth.method = "token"
+auth.token = "123"
+# console or real logFile path like ./frpc.log
+log.to = "./frpc.log"
+# trace, debug, info, warn, error
+log.level = "info"
+log.maxDays = 30
+# disable log colors when log.to is console, default is false
+log.disablePrintColor = false
+
+
+[[proxies]]
+name = "test"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 2022

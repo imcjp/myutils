@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置frp版本
-version=0.53.2
+version=0.65.0
 
 # 步骤1: 获得home目录的路径
 current_dir=$(pwd)
